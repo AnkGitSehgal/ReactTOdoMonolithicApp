@@ -10,7 +10,7 @@ stages:
         inputs:
           targetType: 'inline'
           script: |
-            - powershell: '& "$(System.DefaultWorkingDirectory)\path\biome.exe" check .'
+            - powershell: 'C:\Users\25pur\Downloads\Tool lint "$(System.DefaultWorkingDirectory)'
               displayName: 'Run Biome'
 
 
