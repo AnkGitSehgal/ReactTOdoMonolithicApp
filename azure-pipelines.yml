@@ -9,10 +9,4 @@ stages:
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
-          script: |
-            - powershell: 'C:\Users\25pur\Downloads\Tool lint "$(System.DefaultWorkingDirectory)"'
-              displayName: 'Run Biome'
-
-
-
-
+          script: '''& "$C:\Users\25pur\Downloads\tools\biome.exe" lint "$(System.DefaultWorkingDirectory)"'''
