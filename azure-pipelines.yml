@@ -1,2 +1,18 @@
 trigger: none 
-pool: Default
+pool: App_Pool
+stages:
+  - stage: Scanning 
+    jobs:
+    - job:
+      displayName: Scanning WIP
+      steps:
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            - powershell: '& "$(System.DefaultWorkingDirectory)\path\biome.exe" check .'
+              displayName: 'Run Biome'
+
+
+
+
