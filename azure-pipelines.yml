@@ -10,5 +10,5 @@ stages:
          inputs:
            targetType: 'inline'
            script: |
-             Invoke-WebRequest -Uri "https://github.com/biomejs/biome/releases/latest/download/biome-windows-x64.exe" -OutFile "biome.exe"
+             curl -L -o biome.exe https://github.com/biomejs/biome/releases/latest/download/biome-windows-x64.exe -OutFile "biome.exe"
              & ".\biome.exe" lint "$(System.DefaultWorkingDirectory)"
