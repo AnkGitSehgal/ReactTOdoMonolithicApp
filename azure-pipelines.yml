@@ -11,5 +11,15 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          Invoke-WebRequest –Uri "https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%402.4.12/biome-win32-x64.exe" -OutFile "$(Agent.ToolsDirectory)\biome.exe" 
+          Invoke-WebRequest -Uri "https://github.com/biomejs/biome/releases/latest/download/biome.exe" -OutFile "$(Agent.ToolsDirectory)\biome.exe"
           & "$(Agent.ToolsDirectory)\biome.exe" lint "$(System.DefaultWorkingDirectory)"
+          if ($LASTEXITCODE -ne 0) {
+          Write-Error "Biome lint failed"
+          exit 1
+          }
+    # - task: PowerShell@2
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       Invoke-WebRequest –Uri "https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%402.4.12/biome-win32-x64.exe" -OutFile "$(Agent.ToolsDirectory)\biome.exe" 
+    #       & "$(Agent.ToolsDirectory)\biome.exe" lint "$(System.DefaultWorkingDirectory)"
