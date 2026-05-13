@@ -26,11 +26,8 @@ stages:
       inputs:
         SonarQube: 'SonarConnection'
         scannerMode: 'cli'
-        configMode: 'manual'
-        cliProjectKey: 'react-app'
-        cliProjectName: 'todo'
-        cliSources: '.'
-        extraProperties: 'sonar.scanner.skipJreProvisioning=true'
+        configMode: 'file'
+        extraProperties: 
         
     - task: SonarQubeAnalyze@8
       inputs:
