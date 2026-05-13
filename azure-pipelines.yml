@@ -22,18 +22,13 @@ stages:
   - job: 
     displayName: SonarQubeTool
     steps:
-    - task: SonarQubePrepare@8
+    - task: PowerShell@2
       inputs:
-        SonarQube: 'SonarConnection'
-        scannerMode: 'cli'
-        configMode: 'file'
-        extraProperties: 
-        
-    - task: SonarQubeAnalyze@8
-      inputs:
-        jdkversion: 'JAVA_HOME_17_X64'
-    - task: SonarQubePublish@8
-      inputs:
-        pollingTimeoutSec: '300'
-
+        targetType: 'inline'
+        script: |
+          sonar-scanner `
+          -Dsonar.host.url=http://localhost:9000 `
+          -Dsonar.token=squ_968339519026fddaad93c5fc70f463265a726c72 `
+          -Dsonar.projectKey=TodoPipeline `
+          -Dsonar.sources=.
 
