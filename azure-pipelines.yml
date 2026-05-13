@@ -15,4 +15,24 @@ stages:
         script: |
           Invoke-WebRequest -Uri "https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%402.3.11/biome-win32-x64.exe" -OutFile "$(Agent.ToolsDirectory)\biome.exe"
           & "$(Agent.ToolsDirectory)\biome.exe" lint .
+- stage: SAST
+  displayName: StaticApplicationSecurityTes
+  jobs:
+  - job: 
+    displayName: SonarQubeTool
+    steps:
+    - task: SonarQubePrepare@8
+      inputs:
+        SonarQube: 'SonarConnection'
+        scannerMode: 'cli'
+        configMode: 'manual'
+        cliProjectKey: 'react-app'
+        cliProjectName: 'todo'
+        cliSources: '.'
+    - task: SonarQubeAnalyze@8
+      inputs:
+        jdkversion: 'JAVA_HOME_17_X64'
+    - task: SonarQubePublish@8
+      inputs:
+        pollingTimeoutSec: '300'
 
