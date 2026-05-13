@@ -26,9 +26,5 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          sonar-scanner `
-          -Dsonar.host.url=http://localhost:9000 `
-          -Dsonar.token=squ_968339519026fddaad93c5fc70f463265a726c72 `
-          -Dsonar.projectKey=TodoPipeline `
-          -Dsonar.sources=.
+          sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.token=squ_968339519026fddaad93c5fc70f463265a726c72 -Dsonar.projectKey=TodoPipeline
 
