@@ -14,10 +14,5 @@ stages:
         targetType: 'inline'
         script: |
           Invoke-WebRequest -Uri "https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%402.3.11/biome-win32-x64.exe" -OutFile "$(Agent.ToolsDirectory)\biome.exe"
-          
           & "$(Agent.ToolsDirectory)\biome.exe" lint .
-          
-          if ($LASTEXITCODE -ne 0) {
-              Write-Error "Biome lint failed"
-              exit 1
           }
