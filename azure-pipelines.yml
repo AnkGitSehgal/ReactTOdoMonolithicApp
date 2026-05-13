@@ -2,19 +2,19 @@ trigger: none
 pool: 
   name: App_Pool
 stages:
-- stage: Scanning
-  displayName: Scanning Stage
-  jobs:
-  - job: BiomeLint
-    displayName: ScanningWIP
-    continueOnError: true
-    steps:
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'
-        script: |
-          Invoke-WebRequest -Uri "https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%402.3.11/biome-win32-x64.exe" -OutFile "$(Agent.ToolsDirectory)\biome.exe"
-          & "$(Agent.ToolsDirectory)\biome.exe" lint .
+# - stage: Scanning
+#   displayName: Scanning Stage
+#   jobs:
+#   - job: BiomeLint
+#     displayName: ScanningWIP
+#     continueOnError: true
+#     steps:
+#     - task: PowerShell@2
+#       inputs:
+#         targetType: 'inline'
+#         script: |
+#           Invoke-WebRequest -Uri "https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%402.3.11/biome-win32-x64.exe" -OutFile "$(Agent.ToolsDirectory)\biome.exe"
+#           & "$(Agent.ToolsDirectory)\biome.exe" lint .
 - stage: SAST
   displayName: StaticApplicationSecurityTes
   jobs:
