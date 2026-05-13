@@ -29,10 +29,12 @@ stages:
         cliProjectKey: 'react-app'
         cliProjectName: 'todo'
         cliSources: '.'
+        extraProperties: 'sonar.branch.name='
     - task: SonarQubeAnalyze@8
       inputs:
         jdkversion: 'JAVA_HOME_17_X64'
     - task: SonarQubePublish@8
       inputs:
         pollingTimeoutSec: '300'
+
 
