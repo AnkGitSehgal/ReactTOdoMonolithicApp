@@ -3,26 +3,26 @@ pr: none
 pool: 
   name: App_Pool
 stages:
-# - stage: Scanning
-#   displayName: Scanning Stage
-#   jobs:
-#   - job: BiomeLint
-#     displayName: ScanningWIP
-#     continueOnError: true
-#     steps:
-#     - task: PowerShell@2
-#       inputs:
-#         targetType: 'inline'
-#         script: |
-#           Invoke-WebRequest -Uri "https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%402.3.11/biome-win32-x64.exe" -OutFile "$(Agent.ToolsDirectory)\biome.exe"
-#           & "$(Agent.ToolsDirectory)\biome.exe" lint .
-- stage: SAST
-  displayName: StaticApplicationSecurityTes
+- stage: Scanning
+  displayName: Scanning Stage
   jobs:
-  - job: 
-    displayName: SonarQubeTool
+  - job: BiomeLint
+    displayName: ScanningWIP
+    continueOnError: true
     steps:
     - task: PowerShell@2
       inputs:
         targetType: 'inline'
-        script: 'sonar-scanner.bat -D"sonar.projectKey=AnkitTodo" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sqp_aac590eefc06b8bf0d82310828dda63f042f8ceb"'
+        script: |
+          Invoke-WebRequest -Uri "https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%402.3.11/biome-win32-x64.exe" -OutFile "$(Agent.ToolsDirectory)\biome.exe"
+          & "$(Agent.ToolsDirectory)\biome.exe" lint .
+# - stage: SAST
+#   displayName: StaticApplicationSecurityTes
+#   jobs:
+#   - job: 
+#     displayName: SonarQubeTool
+#     steps:
+#     - task: PowerShell@2
+#       inputs:
+#         targetType: 'inline'
+#         script: 'sonar-scanner.bat -D"sonar.projectKey=AnkitTodo" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sqp_aac590eefc06b8bf0d82310828dda63f042f8ceb"'
