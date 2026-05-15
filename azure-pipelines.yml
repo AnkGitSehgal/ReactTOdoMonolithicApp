@@ -26,3 +26,8 @@ stages:
 #       inputs:
 #         targetType: 'inline'
 #         script: 'sonar-scanner.bat -D"sonar.projectKey=AnkitTodo" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sqp_aac590eefc06b8bf0d82310828dda63f042f8ceb"'
+- stage: BuildStage
+  jobs:
+  - job: 
+    steps:
+    
