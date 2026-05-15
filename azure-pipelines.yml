@@ -41,12 +41,14 @@ stages:
           npm run build
         workingDirectory: '$(System.DefaultWorkingDirectory)'
     - task: PublishPipelineArtifact@1
+      displayName: PublishingArtifact
       inputs:
         targetPath: '$(System.DefaultWorkingDirectory)/build'
         artifact: 'BuildDrop'
         publishLocation: 'pipeline'
-# - stage: DeployCountinue
-#   jobs:
-#   - job: 
-#     steps:
+- stage: DeployCountinue
+  jobs:
+  - job:
+    displayName: DownloadArtifact
+    steps:
     
