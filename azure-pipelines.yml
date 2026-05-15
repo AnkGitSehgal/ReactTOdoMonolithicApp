@@ -51,4 +51,9 @@ stages:
   - job:
     displayName: DownloadArtifact
     steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'BuildDrop'
+        targetPath: '$(System.DefaultWorkingDirectory)/build_artifact'
     
