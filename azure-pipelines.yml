@@ -45,3 +45,8 @@ stages:
         targetPath: '$(System.DefaultWorkingDirectory)/build'
         artifact: 'BuildDrop'
         publishLocation: 'pipeline'
+# - stage: DeployCountinue
+#   jobs:
+#   - job: 
+#     steps:
+    
