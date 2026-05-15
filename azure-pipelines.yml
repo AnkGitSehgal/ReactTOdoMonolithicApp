@@ -56,4 +56,16 @@ stages:
         buildType: 'current'
         artifactName: 'BuildDrop'
         targetPath: '$(System.DefaultWorkingDirectory)/build_artifact'
-    
+    - task: CopyFilesOverSSH@0
+      inputs:
+        sshEndpoint: 'AnkitVM'
+        sourceFolder: '$(System.DefaultWorkingDirectory)/build_artifact'''
+        contents: '**'
+        targetFolder: '/Home/AnkitAPP'
+        readyTimeout: '20000'
+    - task: SSH@0
+      inputs:
+        sshEndpoint: 'AnkitVM'
+        runOptions: 'commands'
+        commands: 'sudo cp -r /Home/AnkitAPP/* /var/www/html'''
+        readyTimeout: '20000'
