@@ -59,7 +59,7 @@ stages:
     - task: CopyFilesOverSSH@0
       inputs:
         sshEndpoint: 'AnkitVM'
-        sourceFolder: '$(System.DefaultWorkingDirectory)/build_artifact'''
+        sourceFolder: '$(System.DefaultWorkingDirectory)/build_artifact'
         contents: '**'
         targetFolder: '/Home/AnkitAPP'
         readyTimeout: '20000'
@@ -67,5 +67,5 @@ stages:
       inputs:
         sshEndpoint: 'AnkitVM'
         runOptions: 'commands'
-        commands: 'sudo cp -r /Home/AnkitAPP/* /var/www/html'''
+        commands: 'sudo cp -r /Home/AnkitAPP/* /var/www/html'
         readyTimeout: '20000'
