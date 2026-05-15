@@ -26,26 +26,26 @@ stages:
 #       inputs:
 #         targetType: 'inline'
 #         script: 'sonar-scanner.bat -D"sonar.projectKey=AnkitTodo" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=sqp_aac590eefc06b8bf0d82310828dda63f042f8ceb"'
-# - stage: BuildStage
-#   jobs:
-#   - job: 
-#     steps:
-#     - task: NodeAndNpmTool@1
-#       inputs:
-#         versionSpec: '18.x'
-#     - task: PowerShell@2
-#       inputs:
-#         targetType: 'inline'
-#         script: |
-#           npm install
-#           npm run build
-#         workingDirectory: '$(System.DefaultWorkingDirectory)'
-#     - task: PublishPipelineArtifact@1
-#       displayName: PublishingArtifact
-#       inputs:
-#         targetPath: '$(System.DefaultWorkingDirectory)/build'
-#         artifact: 'BuildDrop'
-#         publishLocation: 'pipeline'
+- stage: BuildStage
+  jobs:
+  - job: 
+    steps:
+    - task: NodeAndNpmTool@1
+      inputs:
+        versionSpec: '18.x'
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          npm install
+          npm run build
+        workingDirectory: '$(System.DefaultWorkingDirectory)'
+    - task: PublishPipelineArtifact@1
+      displayName: PublishingArtifact
+      inputs:
+        targetPath: '$(System.DefaultWorkingDirectory)/build'
+        artifact: 'BuildDrop'
+        publishLocation: 'pipeline'
 - stage: DeployCountinue
   jobs:
   - job:
